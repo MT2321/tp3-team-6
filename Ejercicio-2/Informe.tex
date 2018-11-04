@@ -17,15 +17,39 @@ Este mismo esquema también queda encapsulado en la siguiente tabla de estados:\
 			\textbf{Estado} &\multicolumn{2}{|c|}{Estado siguiente} & \textbf{Salida}\\
 			\textbf{actual} & \textbf{ W=0 } & \textbf{ W=1 } & \textbf{Z}\\
 			\hline
-			\textbf{Default} & \textbf{ Default } & \textbf{ A } & \textbf{0}\\
+			\textbf{Default} & \textbf{ Default } & \textbf{ A } & 0\\
 			\hline
-			\textbf{A} & \textbf{ Default } & \textbf{ B } & \textbf{0}\\
+			\textbf{A} & \textbf{ Default } & \textbf{ B } & 0\\
 			\hline
-			\textbf{B} & \textbf{ C } & \textbf{Default } & \textbf{0}\\
+			\textbf{B} & \textbf{ C } & \textbf{Default } & 0\\
 			\hline
-			\textbf{C} & \textbf{ Default } & \textbf{ D } & \textbf{0}\\
+			\textbf{C} & \textbf{ Default } & \textbf{ D } & 0\\
 			\hline
-			\textbf{D} & \textbf{Default } & \textbf{Default} & \textbf{1}\\
+			\textbf{D} & \textbf{Default } & \textbf{Default} & 1\\
+			\hline
+			\end{tabular}
+	\end{center}
+\end{table}
+\FloatBarrier
+Para la implementación de esté falta realizar la asignación de valores de estado, lo cual nos lleva cambiar la tabla anterior por la siguiente:\\
+\FloatBarrier
+\begin{table}[h!]
+	\begin{center}
+		\caption{Tabla de estados asignados}
+			\begin{tabular}{|c|c|c c|c|}
+			\hline
+			\textbf{Estado} & \textbf{Asignacion del} &\multicolumn{2}{|c|}{Estado siguiente} & \textbf{Salida}\\
+			\textbf{actual}  & \textbf{Estado actual} & \textbf{ W=0 } & \textbf{ W=1 } & \textbf{Z}\\
+			\hline
+			\textbf{Default} & 000 & 000 &  001 & 0\\
+			\hline
+			\textbf{A} & 001 & 000 &  010 & 0\\
+			\hline
+			\textbf{B} & 010 & 011 & 000 & 0\\
+			\hline
+			\textbf{C} & 011 & 000 & 100 & 0\\
+			\hline
+			\textbf{D} & 100 & 000 & 000 & 1\\
 			\hline
 			\end{tabular}
 	\end{center}
