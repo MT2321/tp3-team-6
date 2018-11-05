@@ -1,5 +1,5 @@
 \chapter{Ejercicio 2}
-Se desea diseñar una máquina de estados que, al recibir la siguiente secuencia de bits en forma sincrónica 1-1-0-1 encienda una salida y en caso contrario, la mantiene apagada. Se obtienen 5 estados para la misma, en los cuales va a haber un default que va a ser el estado al cual todos los demás estados van a volver en caso de no recibir los deseados.\\
+Se desea diseñar una máquina de estados que, al recibir la siguiente secuencia de bits en forma sincrónica 1-1-0-1 encienda una salida y en caso contrario, la mantiene apagada. Se obtienen 5 estados para la misma, en los cuales va a haber un default que va a ser el estado al cual todos los demás estados van a volver en caso de no recibir los deseados además de ser el estado por el cual va a empezar la máquina de estados.\\
 Podemos representar los mismos en el siguiente diagrama de estados:\\
 \begin{figure}[h!]
 	\centering
@@ -35,6 +35,7 @@ Para la implementación de esté falta realizar la asignación de valores de est
 \FloatBarrier
 \begin{table}[h!]
 	\begin{center}
+		\label{t:Tabla}
 		\caption{Tabla de estados asignados}
 			\begin{tabular}{|c|c|c c|c|}
 			\hline
@@ -55,3 +56,13 @@ Para la implementación de esté falta realizar la asignación de valores de est
 	\end{center}
 \end{table}
 \FloatBarrier
+\section{Máquina de Moore}
+Para nuestro caso tenemos el siguiente circuito secuencial genérico:\\
+\FloatBarrier
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{../Ejercicio-2/Maquina_Moore.png}
+	\caption{Circuito generico}
+\end{figure}
+\FloatBarrier
+Donde vamos a utilizar Flip-Flops D dado que la entrada D de estos va a corresponder con el estado siguiente $Y_i$ y van a estar seteados por el clock para que esta salida luego cambia la variable $y_i$ a $Y_i$, dado que $y_i$ son las variables de estado actual.De la tabla \ref{t:Tabla}, obtenemos los siguientes mapas de Karnaugh:\\
