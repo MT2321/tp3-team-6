@@ -56,6 +56,7 @@ Para la implementación de esté falta realizar la asignación de valores de est
 	\end{center}
 \end{table}
 \FloatBarrier
+%Empieza la parte de la maquina de Moore
 \section{Máquina de Moore}
 Para nuestro caso tenemos el siguiente circuito secuencial genérico:\\
 \FloatBarrier
@@ -66,3 +67,15 @@ Para nuestro caso tenemos el siguiente circuito secuencial genérico:\\
 \end{figure}
 \FloatBarrier
 Donde vamos a utilizar Flip-Flops D dado que la entrada D de estos va a corresponder con el estado siguiente $Y_i$ y van a estar seteados por el clock para que esta salida luego cambia la variable $y_i$ a $Y_i$, dado que $y_i$ son las variables de estado actual.De la tabla \ref{t:Tabla}, obtenemos los siguientes mapas de Karnaugh:\\
+\FloatBarrier
+\FloatBarrier
+En donde las X representan el don't care y se les decidió dar un valor acorde al cual permiten la simplificación del circuito. Dando como resultado las siguientes ecuaciones:\\
+\begin{center}
+	$Y_1 = W \cdot \overline{ y_3 } \cdot \overline{ y_2} \cdot \overline{ y_1 } + \overline{ W } \cdot \overline{ y_1} \cdot y_2  $\\
+	$Y_2 = W \cdot \overline{ y_2} \cdot  y_1  + \overline{ W } \cdot \overline{ y_1} \cdot y_2  $\\
+	$Y_3 = W \cdot  y_2 \cdot  y_1   $\\
+	$Z = y_3  $\\
+\end{center}
+%Empieza la parte de la maquina de Mealy
+\section{Máquina de Mealy}
+Para poder realizar la máquina de estados con el modelo de Mealy es necesario que la salida dependa tanto de los estados como de la entrada de esta, con lo cual van a ser necesarios realizar cambios a la actual máquina de estados.\\
