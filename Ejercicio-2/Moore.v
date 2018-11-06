@@ -11,7 +11,7 @@ always@(w,y)    //It will only activate when w or y change
             if (w)
                 Y=A;
             else
-                Y=Default
+                Y=Default;
         A:
             if(w)
                 Y=B;
