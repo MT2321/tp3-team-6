@@ -1,6 +1,6 @@
-module Mealy (Clock,z,w):
-input Clock,w;
-output z;
+module Mealy (Clock,Reset,z,w);
+input Clock,Reset,w;
+output reg z;
 reg[2:1] y,Y;
 //Estates of the FSM
 parameter [2:1] Default=2'b00, A=2'b01,B=2'b10,C=2'b11;
@@ -51,4 +51,11 @@ always@(w,y)
                     z=0;
                     Y=Default;
                 end
+    endcase
+// Define the sequential block
+always @(posedge Reset, posedge Clock)
+    if (Reset == 1) 
+    y <= Default;
+    else 
+    y <= Y;
 endmodule
