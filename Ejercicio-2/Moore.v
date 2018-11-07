@@ -1,4 +1,4 @@
-module Moore (Clock,z,w):
+module Moore (Clock,Reset,z,w):
 input Clock,w;
 output z;
 reg[3:1] y,Y;
@@ -34,6 +34,9 @@ always@(w,y)    //It will only activate when w or y change
     endcase
 //Define sequential block
 always(posedge Clock)   //It will react every time the clock rise
+    if (Reset)
+    y <= Default;
+    else
     y <= Y;
 //Define output
 assign z= (y == D);
