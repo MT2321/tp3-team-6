@@ -39,8 +39,19 @@ always@(w,y)    //It will only activate when w or y change
 //Define sequential block
 always @(posedge Reset,posedge Clock)   //It will react every time the clock rise
     if (Reset == 1)
-    y <= Default;
+        y <= Default;
     else
-    y <= Y;
+        y <= Y;
 //This means that the exit will only be 1 when we are in the state D
+endmodule
+
+//This is where the flip-flop D stars
+module flip_flop(Clock,Reset,D,Q);
+input D, Clock, Reset;
+output reg Q;
+always @(posedge Reset, posedge Clock)
+    if (Reset == 1)
+        Q <= 0;
+    else
+        Q <= D;
 endmodule

@@ -59,3 +59,14 @@ always @(posedge Reset, posedge Clock)
     else 
     y <= Y;
 endmodule
+
+//This is where the flip-flop D stars
+module flip_flop(Clock,Reset,D,Q);
+input D, Clock, Reset;
+output reg Q;
+always @(posedge Reset, posedge Clock)
+    if (Reset == 1)
+        Q <= 0;
+    else
+        Q <= D;
+endmodule
