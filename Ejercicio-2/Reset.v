@@ -12,9 +12,9 @@ output reg reset;
     initial
     begin
         reset = 1'b1;
-        #(PERIOD/2);
+        #PERIOD;
         reset <= 1'b0;
-        #(PERIOD/2);
+        #PERIOD;
     end
 
 endmodule
