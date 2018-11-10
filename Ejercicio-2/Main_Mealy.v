@@ -2,11 +2,12 @@
 module main;
 
 // My signal definitions
-    wire Reset,Clock;
-    wire Test = 1;
+    wire Reset,Clock,Signal;
+    wire Output;
     reset_gen res_gen(Reset);
     clock_gen clk_gen(Clock);
-    flip_flop flip_flopD(Clock,Reset,Test,Q);
+    test_gen test(Signal);
+    Real_Mealy FSM(Clock,Reset,Output,Signal);
     initial begin
         #10;
         $finish;
