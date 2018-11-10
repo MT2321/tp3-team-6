@@ -55,3 +55,32 @@ always @(posedge Reset, posedge Clock)
     else
         Q <= D;
 endmodule
+
+//The FSM given by the ecuations
+module Real_Moore(Clock,Reset,z,w);
+input Clock,Reset,w;
+output z;
+wire y1,y2,y3,Y1,Y2,Y3;
+//Temporary wires
+wire w_Neg,y1_Neg,y2_Neg,y3_Neg,a,b,c,d,e,f;
+//Internal connections
+not(w_Neg,w);
+not(y1_Neg,y1);
+not(y2_Neg,y2);
+not(y3_Neg,y3);
+flip_flop Flip_FlopD1(Clock,Reset,Y1,y1);
+flip_flop Flip_FlopD2(Clock,Reset,Y2,y2);
+flip_flop Flip_FlopD3(Clock,Reset,Y3,y3);
+//Y1
+and(a,w,y1_Neg,y2_Neg,y3_Neg);
+and(b,w_Neg,y2,y1_Neg);
+or(Y1,a,b);
+//Y2
+and(c,w,y1,y2_Neg);
+and(d,w_Neg,y2,y1_Neg);
+or(Y2,c,d);
+//Y3
+and(Y3,w,y1,y2);
+//Next state combinational circuit and output combinational circuits
+ assign z=y3;
+endmodule
