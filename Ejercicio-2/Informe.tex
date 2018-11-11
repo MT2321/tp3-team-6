@@ -68,8 +68,50 @@ Para nuestro caso tenemos el siguiente circuito secuencial genérico:\\
 \end{figure}
 \FloatBarrier
 Donde vamos a utilizar Flip-Flops D dado que la entrada D de estos va a corresponder con el estado siguiente $Y_i$ y van a estar seteados por el clock para que esta salida luego cambia la variable $y_i$ a $Y_i$, dado que $y_i$ son las variables de estado actual.De la tabla \ref{t:Tabla}, obtenemos los siguientes mapas de Karnaugh:\\
-\FloatBarrier
-\FloatBarrier
+\begin{center}
+	\begin{figure}[h!]
+		\begin{minipage}{0.5\textwidth}
+			\caption{Mapa de Karnaugh para $Y_1$}
+			\centering
+			\begin{Karnaugh}
+				\contingut{0,0,1,0,0,X,X,X,1,0,0,0,0,X,X,X}
+				\implicant{2}{6}{red}
+				\implicant{8}{8}{red}
+			\end{Karnaugh}
+		\end{minipage}
+		 \hspace{5mm}
+		\begin{minipage}{0.5\textwidth}
+			\caption{Mapa de Karnaugh para $Y_2$}
+			\centering
+			\begin{Karnaugh}
+				\contingut{0,0,1,0,0,X,X,X,0,1,0,0,0,X,X,X}
+				\implicant{2}{6}{red}
+				\implicant{13}{9}{red}
+			\end{Karnaugh}
+		\end{minipage}
+	\end{figure}
+\end{center}
+\begin{center}
+	\begin{figure}[h!]
+		\begin{minipage}{0.5\textwidth}
+			\caption{Mapa de Karnaugh para $Y_3$}
+			\centering
+			\begin{Karnaugh}
+				\contingut{0,0,0,0,0,X,X,X,0,0,0,1,0,X,X,X}
+				\implicant{15}{11}{red}
+			\end{Karnaugh}
+		\end{minipage}
+		 \hspace{5mm}
+		\begin{minipage}{0.5\textwidth}
+			\caption{Mapa de Karnaugh para Z}
+			\centering
+			\begin{Karnaughvuit}
+				\contingut{0,0,0,0,1,X,X,X}
+				\implicant{4}{6}{red}
+			\end{Karnaughvuit}
+		\end{minipage}
+	\end{figure}
+\end{center}
 En donde las X representan el don't care y se les decidió dar un valor acorde al cual permiten la simplificación del circuito. Dando como resultado las siguientes ecuaciones:\\
 \begin{center}
 	$Y_1 = W \cdot \overline{ y_3 } \cdot \overline{ y_2} \cdot \overline{ y_1 } + \overline{ W } \cdot \overline{ y_1} \cdot y_2  $\\
@@ -77,6 +119,14 @@ En donde las X representan el don't care y se les decidió dar un valor acorde a
 	$Y_3 = W \cdot  y_2 \cdot  y_1   $\\
 	$Z = y_3  $\\
 \end{center}
+Se realizo la correspondiente simulación en verilog, el cual nos da un comportamiento ideal del circuito, obteniendo el siguiente resultado:\\
+\FloatBarrier
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.8]{../Ejercicio-2/Simulacion_Moore.png}
+	\caption{Simulación}
+\end{figure}
+\FloatBarrier
 %Empieza la parte de la maquina de Mealy
 \section{Máquina de Mealy}
 Para poder realizar la máquina de estados con el modelo de Mealy es necesario que la salida dependa tanto de los estados como de la entrada de esta, con lo cual van a ser necesarios realizar cambios a la actual máquina de estados.\\
@@ -91,13 +141,71 @@ Quitando el último estado del diagrama \ref{f:Moore} y expresando la salida jun
 \FloatBarrier
 El diagrama tiene un estado menos ahorra, esto provoca los siguientes cambio en la tabla de asignación:\\
 \FloatBarrier
+\begin{table}[h!]
+	\begin{center}
+		\label{t:Tabla2}
+		\caption{Tabla de estados asignados}
+			\begin{tabular}{|c|c|c c|c|c|c|}
+			\hline
+			\textbf{Estado} & \textbf{Asignacion del} &\multicolumn{2}{|c|}{Estado siguiente} & \multicolumn{2}{|c|}{Salida Z}\\
+			\textbf{actual}  & \textbf{Estado actual} & \textbf{ W=0 } & \textbf{ W=1 } & \textbf{ W=0 } & \textbf{ W=1 } \\
+			\hline
+			\textbf{Default} & 00 & 00 &  01 & 0 & 0\\
+			\hline
+			\textbf{A} & 01 & 00 &  10 & 0 & 0\\
+			\hline
+			\textbf{B} & 10 & 11 & 00 & 0 & 0\\
+			\hline
+			\textbf{C} & 11 & 00 & 00 & 0 & 1\\
+			\hline
+			\end{tabular}
+	\end{center}
+\end{table}
 \FloatBarrier
 La cual nos permite obtener los siguientes mapas de Karnaugh:\\
-\FloatBarrier
-\FloatBarrier
+\begin{center}
+	\begin{figure}[h!]
+		\begin{minipage}{0.3\textwidth}
+			\caption{Mapa de Karnaugh para $Y_1$}
+			\centering
+			\begin{Karnaughvuit}
+				\contingut{0,0,1,0,1,0,0,0}
+				\implicant{2}{2}{red}
+				\implicant{4}{4}{red}
+			\end{Karnaughvuit}
+		\end{minipage}
+		 \hspace{5mm}
+		\begin{minipage}{0.3\textwidth}
+			\caption{Mapa de Karnaugh para $Y_2$}
+			\centering
+			\begin{Karnaughvuit}
+				\contingut{0,0,1,0,0,1,0,0}
+				\implicant{2}{2}{red}
+				\implicant{5}{5}{red}
+			\end{Karnaughvuit}
+		\end{minipage}
+ 		\hspace{5mm}
+		\begin{minipage}{0.3\textwidth}
+			\caption{Mapa de Karnaugh para Z}
+			\centering
+			\begin{Karnaughvuit}
+				\contingut{0,0,0,0,0,0,0,1}
+				\implicant{7}{7}{red}
+			\end{Karnaughvuit}
+		\end{minipage}
+	\end{figure}
+\end{center}
 Dando como resultado de las simplificaciones las siguientes ecuaciones:\\
 \begin{center}
 	$Y_1 = W \cdot \overline{ y_2} \cdot \overline{ y_1 } + \overline{ W } \cdot \overline{ y_1} \cdot y_2  $\\
 	$Y_2 = W \cdot \overline{ y_2} \cdot  y_1  + \overline{ W } \cdot \overline{ y_1} \cdot y_2  $\\
 	$Z = W \cdot  y_2 \cdot y_1  $\\
 \end{center}
+Se realizo la correspondiente simulación en verilog, el cual nos da un comportamiento ideal del circuito, obteniendo el siguiente resultado:\\
+\FloatBarrier
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.8]{../Ejercicio-2/Simulacion_Mealy.png}
+	\caption{Simulación}
+\end{figure}
+\FloatBarrier
